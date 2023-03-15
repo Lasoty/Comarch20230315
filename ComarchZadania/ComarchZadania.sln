@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComarchZadania", "ComarchZadania\ComarchZadania.csproj", "{361786CA-8DA6-4DAA-8CBD-2BE47710F252}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{361786CA-8DA6-4DAA-8CBD-2BE47710F252}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{361786CA-8DA6-4DAA-8CBD-2BE47710F252}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{361786CA-8DA6-4DAA-8CBD-2BE47710F252}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{361786CA-8DA6-4DAA-8CBD-2BE47710F252}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF6596E6-6A9F-4DC8-B0D7-B71969425350}
+	EndGlobalSection
+EndGlobal
