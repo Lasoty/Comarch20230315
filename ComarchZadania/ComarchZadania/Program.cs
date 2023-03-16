@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComarchZadania.CarSharing;
+using System;
 using System.Text.RegularExpressions;
 
 namespace ComarchZadania
@@ -79,6 +80,10 @@ namespace ComarchZadania
                     break;
                 case 7:
                     ArrayOperations.Sortowanie();
+                    break;
+                case 8:
+                    CarSharingManager carManager = new CarSharingManager();
+                    carManager.Run();
                     break;
                 default:
                     break;
