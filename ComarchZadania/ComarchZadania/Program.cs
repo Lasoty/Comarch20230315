@@ -15,37 +15,40 @@ namespace ComarchZadania
 
             Console.Write("Podaj pozycję menu: ");
             int menu = int.Parse(Console.ReadLine());
+            
+            Calculator calculator = new Calculator();
+            
+            
+
+            int liczbaX;
+            int liczbaY;
+            int wynik;
 
             switch (menu)
             {
                 case 1:
-                    Console.Write("Podaj x: ");
-                    string liczbaXstring = Console.ReadLine();
+                    BierzDane(out liczbaX, out liczbaY);
 
-                    Console.Write("Podaj y: ");
-                    string liczbaYstring = Console.ReadLine();
-
-                    string sumaString = liczbaXstring + liczbaYstring;
-
-                    int liczbaX = 0;
-                    int liczbaY = 0;
-
-                    if (int.TryParse(liczbaXstring, out liczbaX)
-                        && int.TryParse(liczbaYstring, out liczbaY))
-                    {
-                        int wynik = liczbaX + liczbaY;
-                        Console.WriteLine($"Suma liczb {liczbaXstring} oraz {liczbaYstring} to {wynik}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Błędna liczba");
-                    }
+                    wynik = calculator.Add(liczbaX, liczbaY);
+                    Console.WriteLine($"Wynik dodawania {liczbaX} oraz {liczbaY} to {wynik}.");
                     break;
                 case 2:
+                    BierzDane(out liczbaX, out liczbaY);
+
+                    wynik = calculator.Subtract(liczbaX, liczbaY);
+                    Console.WriteLine($"Wynik odejmowania {liczbaX} oraz {liczbaY} to {wynik}.");
                     break;
                 case 3:
+                    BierzDane(out liczbaX, out liczbaY); ;
+
+                    wynik = calculator.Multiply(liczbaX, liczbaY);
+                    Console.WriteLine($"Wynik mnożenia {liczbaX} oraz {liczbaY} to {wynik}.");
                     break;
                 case 4:
+                    BierzDane(out liczbaX, out liczbaY);
+
+                    wynik = calculator.Divide(liczbaX, liczbaY);
+                    Console.WriteLine($"Wynik dzielenia {liczbaX} oraz {liczbaY} to {wynik}.");
                     break;
                 case 5:
                     break;
@@ -62,6 +65,18 @@ namespace ComarchZadania
 
 
             Console.ReadLine();
+        }
+
+        private static void BierzDane(out int liczbaX, out int liczbaY)
+        {
+            Console.Write("Podaj x: ");
+            string liczbaXstring = Console.ReadLine();
+
+            Console.Write("Podaj y: ");
+            string liczbaYstring = Console.ReadLine();
+
+            liczbaX = int.Parse(liczbaXstring);
+            liczbaY = int.Parse(liczbaYstring);
         }
     }
 }
