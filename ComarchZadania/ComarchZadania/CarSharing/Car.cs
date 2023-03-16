@@ -71,7 +71,7 @@ namespace ComarchZadania.CarSharing
     {
         public int Capacity { get; set; }
 
-        public override void ShareCar()
+        public new void ShareCar()
         {
             Console.WriteLine("Podaj ładowność ciężarówki: ");
             Capacity = int.Parse(Console.ReadLine());
