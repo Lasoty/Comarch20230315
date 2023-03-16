@@ -11,6 +11,7 @@ namespace ComarchZadania
             Console.WriteLine("Podaj opcję menu:");
             Console.WriteLine(" 1. Dodawanie");
             Console.WriteLine(" 6. Tablice");
+            Console.WriteLine(" 7. Sortowanie tablicy");
 
             Console.Write("Podaj pozycję menu: ");
             int menu = int.Parse(Console.ReadLine());
@@ -50,6 +51,9 @@ namespace ComarchZadania
                     break;
                 case 6:
                     ArrayOperations.ArrayInitialTask();
+                    break;
+                case 7:
+                    ArrayOperations.Sortowanie();
                     break;
                 default:
                     break;

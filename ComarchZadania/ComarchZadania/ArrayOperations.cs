@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ComarchZadania
 {
@@ -34,6 +30,37 @@ namespace ComarchZadania
             }
 
             Console.ReadLine();
+        }
+
+        public static void Sortowanie()
+        {
+            Console.Clear();
+            Console.Write("Podaj liczby rozdzielone spacją: ");
+            string[] sLiczby = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            int[] liczby = new int[sLiczby.Length];
+            int i = 0;
+            foreach (var item in sLiczby)
+            {
+                liczby[i] = int.Parse(item);
+                i++;
+            }
+
+            int n = liczby.Length;
+
+            for (i = 0; i < n - 1; i++)
+            {
+                for (int j = 0; j < n - i - 1; j++)
+                {
+                    if (liczby[j] > liczby[j + 1])
+                    {
+                        int tmp = liczby[j];
+                        liczby[j] = liczby[j + 1];
+                        liczby[j + 1] = tmp;
+                    }
+                }
+            }
+
+            Console.WriteLine("Posortowane wartości: " + string.Join(", ", liczby));
         }
     }
 }
