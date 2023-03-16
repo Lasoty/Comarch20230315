@@ -10,19 +10,29 @@ namespace ComarchZadania
             Console.WriteLine("KALCULATOR v1.0");
             Console.WriteLine("Podaj opcję menu:");
             Console.WriteLine(" 1. Dodawanie");
+            Console.WriteLine(" 2. Odejmowanie");
+            Console.WriteLine(" 3. Mnożenie");
+            Console.WriteLine(" 4. Dzielenie");
+            Console.WriteLine(" 5. Modulo");
             Console.WriteLine(" 6. Tablice");
             Console.WriteLine(" 7. Sortowanie tablicy");
+            Console.WriteLine(" 8. Wypożyczalnia");
 
             Console.Write("Podaj pozycję menu: ");
-            int menu = int.Parse(Console.ReadLine());
-            
+
+            if (!int.TryParse(Console.ReadLine(), out int menu))
+            {
+                Console.WriteLine("Nieprawidłowy wybór");
+                Console.ReadLine();
+                return;
+            }
             Calculator calculator = new Calculator();
-            
-            
+
+
 
             int liczbaX;
             int liczbaY;
-            int wynik;
+            float wynik = 0;
 
             switch (menu)
             {
@@ -47,8 +57,20 @@ namespace ComarchZadania
                 case 4:
                     BierzDane(out liczbaX, out liczbaY);
 
-                    wynik = calculator.Divide(liczbaX, liczbaY);
-                    Console.WriteLine($"Wynik dzielenia {liczbaX} oraz {liczbaY} to {wynik}.");
+                    try
+                    {
+                        wynik = calculator.Divide(liczbaX, liczbaY);
+                        Console.WriteLine($"Wynik dzielenia {liczbaX} oraz {liczbaY} to {wynik}.");
+                    }
+                    catch (DivideByZeroException ex)
+                    {
+                        ShowError("Pamiętaj holero! Nie dziel przez zero!");
+                    }
+                    catch (Exception ex)
+                    {
+                        ShowError("Wystąpił problem z aplikacją");
+                    }
+
                     break;
                 case 5:
                     break;
@@ -65,6 +87,13 @@ namespace ComarchZadania
 
 
             Console.ReadLine();
+        }
+
+        private static void ShowError(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
 
         private static void BierzDane(out int liczbaX, out int liczbaY)

@@ -24,9 +24,9 @@ namespace ComarchZadania
             return x * y; 
         }
 
-        public int Divide(int x, int y) 
+        public float Divide(int x, int y) 
         {
-            return x / y;
+            return x / (float)y;
         }
     }
 }
