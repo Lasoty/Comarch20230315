@@ -145,6 +145,8 @@ namespace ComarchZadania.CarSharing
             Console.WriteLine(" 1. Pokaż auta");
             Console.WriteLine(" 2. Dodaj auto");
             Console.WriteLine(" 3. Wypożycz auto");
+            Console.WriteLine(" 4. Zapisz do pliku");
+            Console.WriteLine(" 5. Odczytaj plik");
             Console.WriteLine(" 0. Wyjdź");
         }
     }

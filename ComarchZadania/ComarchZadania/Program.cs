@@ -1,5 +1,7 @@
 ﻿using ComarchZadania.CarSharing;
+using Microsoft.Win32.SafeHandles;
 using System;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace ComarchZadania
@@ -18,6 +20,8 @@ namespace ComarchZadania
             Console.WriteLine(" 6. Tablice");
             Console.WriteLine(" 7. Sortowanie tablicy");
             Console.WriteLine(" 8. Wypożyczalnia");
+            Console.WriteLine(" 9. Zapis do pliku");
+            Console.WriteLine(" 10. Odczyt do pliku");
 
             Console.Write("Podaj pozycję menu: ");
 
@@ -85,6 +89,12 @@ namespace ComarchZadania
                     CarSharingManager carManager = new CarSharingManager();
                     carManager.Run();
                     break;
+                case 9:
+                    SafeFile();
+                    break;
+                case 10:
+                    ReadFile();
+                    break;
                 default:
                     break;
             }
@@ -92,6 +102,39 @@ namespace ComarchZadania
 
 
             Console.ReadLine();
+        }
+
+        private static void ReadFile()
+        {
+            string path = "..\\plik.txt";
+
+            if (File.Exists(path))
+            {
+                string content = File.ReadAllText(path);
+
+                Console.WriteLine("Zawartość pliku to: ");
+                Console.WriteLine(content);
+            }
+            else
+            {
+                ShowError($"Plik {path} nie istnieje!");
+            }
+        }
+
+        private static void SafeFile()
+        {
+            Console.Clear();
+            Console.WriteLine("Podaj kontent pliku:");
+            string fileContent = Console.ReadLine();
+
+            string path = "..\\Folder\\plik.txt";
+
+            if (!Directory.Exists(Path.GetDirectoryName(path)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
+            }
+
+            File.WriteAllText(path, fileContent);
         }
 
         private static void ShowError(string message)
