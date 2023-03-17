@@ -40,9 +40,9 @@ namespace Bibliotekarz.App
         }
         private void GenerateFakeBooks()
         {
-            BookList = new ObservableCollection<Book>();
+            allBooks = new List<Book>();
 
-            BookList.Add(new Book() 
+            allBooks.Add(new Book() 
             {
                 Id = 1,
                 Author = "Leszek Lewandowski",
@@ -51,7 +51,7 @@ namespace Bibliotekarz.App
                 IsBorrowed = false,
             });
 
-            BookList.Add(new Book()
+            allBooks.Add(new Book()
             {
                 Id = 2,
                 Author = "John Sharp",
@@ -66,7 +66,24 @@ namespace Bibliotekarz.App
                 }
             });
 
-            allBooks = new List<Book>(BookList);
+            allBooks.Add(new Book()
+            {
+                Id = 3,
+                Author = "John Sharp",
+                Title = "Podstawy ASP.NET",
+                PageCount = 500,
+                IsBorrowed = true,
+                Borrower = new Customer()
+                {
+                    Id = 1,
+                    FirstName = "Jan",
+                    LastName = "Nowak"
+                }
+            });
+
+            BookList = new ObservableCollection<Book>(
+                allBooks.OrderBy(book => book.Author).ThenBy(book => book.Title)
+                );
         }
 
         private void BtnFilter_Click(object sender, RoutedEventArgs e)
@@ -82,7 +99,19 @@ namespace Bibliotekarz.App
             }
             else
             {
-                //var filtedItems = allBooks.
+                var filtedItems = allBooks.Where(book => 
+                                            book.Title.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase)
+                                        || book.Author.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase)
+                                        || (book.Borrower?.FirstName.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase) ?? false)
+                                        || (book.Borrower?.LastName.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase) ?? false)
+                                                );
+
+                filtedItems = filtedItems.OrderBy(book => book.Author);
+
+                foreach (var item in filtedItems)
+                {
+                    BookList.Add(item);
+                }
             }
         }
     }
