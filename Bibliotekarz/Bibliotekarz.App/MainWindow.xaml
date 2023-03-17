@@ -13,7 +13,7 @@
 
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Plik">
-                <MenuItem Header="Zamknij" />
+                <MenuItem Click="MenuZamknij_Click" Header="Zamknij" />
             </MenuItem>
             <MenuItem Header="Edycja">
                 <MenuItem Header="Dodaj" />
@@ -31,7 +31,23 @@
             </StatusBarItem>
         </StatusBar>
 
-        <Grid />
+        <Grid>
+            <DataGrid Margin="0,0,0,31" d:ItemsSource="{d:SampleData ItemCount=8}" />
+            <Label
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Content="Filtrowanie" />
+            <TextBox
+                Height="26"
+                Margin="68,0,64,0"
+                VerticalAlignment="Bottom" />
+            <Button
+                Width="59"
+                Height="26"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Content="Filtruj" />
+        </Grid>
 
 
     </DockPanel>

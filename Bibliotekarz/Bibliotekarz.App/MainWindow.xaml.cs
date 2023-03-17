@@ -24,5 +24,10 @@ namespace Bibliotekarz.App
         {
             InitializeComponent();
         }
+
+        private void MenuZamknij_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
