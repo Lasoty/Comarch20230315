@@ -32,20 +32,43 @@
         </StatusBar>
 
         <Grid>
-            <DataGrid Margin="0,0,0,31" d:ItemsSource="{d:SampleData ItemCount=8}" />
+            <DataGrid
+                Margin="0,0,0,31"
+                d:ItemsSource="{d:SampleData ItemCount=8}"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                ItemsSource="{Binding BookList}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Author}"
+                        Header="Autor" />
+                    <DataGridTextColumn
+                        Width="2*"
+                        Binding="{Binding Title}"
+                        Header="Tytuł" />
+                    <DataGridTextColumn Binding="{Binding PageCount}" Header="l. str." />
+                    <DataGridCheckBoxColumn Binding="{Binding IsBorrowed}" Header="Czy wyp." />
+                    <DataGridTextColumn Binding="{Binding Borrower.FirstName}" Header="Imię wyp." />
+                    <DataGridTextColumn Binding="{Binding Borrower.LastName}" Header="Nazwisko wyp." />
+                </DataGrid.Columns>
+            </DataGrid>
             <Label
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Content="Filtrowanie" />
             <TextBox
+                Name="txtFilter"
                 Height="26"
                 Margin="68,0,64,0"
-                VerticalAlignment="Bottom" />
+                VerticalAlignment="Bottom"
+                Text="{Binding FilterText}" />
             <Button
                 Width="59"
                 Height="26"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
+                Click="BtnFilter_Click"
                 Content="Filtruj" />
         </Grid>
 

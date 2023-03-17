@@ -7,4 +7,8 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Bibliotekarz.Data\Bibliotekarz.Data.csproj" />
+  </ItemGroup>
+
 </Project>

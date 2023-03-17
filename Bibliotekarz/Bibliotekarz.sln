@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibliotekarz.App", "Bibliotekarz.App\Bibliotekarz.App.csproj", "{60EA5308-F254-4B12-8CF6-FDFCD7D1D6FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bibliotekarz.Data", "Bibliotekarz.Data\Bibliotekarz.Data.csproj", "{4BF89901-DAB7-4B30-AF07-4338314C7DAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{60EA5308-F254-4B12-8CF6-FDFCD7D1D6FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60EA5308-F254-4B12-8CF6-FDFCD7D1D6FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60EA5308-F254-4B12-8CF6-FDFCD7D1D6FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BF89901-DAB7-4B30-AF07-4338314C7DAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF89901-DAB7-4B30-AF07-4338314C7DAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF89901-DAB7-4B30-AF07-4338314C7DAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF89901-DAB7-4B30-AF07-4338314C7DAF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
