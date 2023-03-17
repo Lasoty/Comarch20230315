@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,8 @@ namespace ComarchZadania.CarSharing
     public class CarSharingManager
     {
         List<Auto> carList = new List<Auto>();
+
+
 
         public void Run()
         {
@@ -30,10 +33,59 @@ namespace ComarchZadania.CarSharing
                     case 3:
                         ShareOwnCar();
                         break;
+                    case 4:
+                        SaveFile();
+                        break;
+                    case 5:
+                        ReadFile();
+                        break;
                 }
 
                 Console.ReadLine();
             } while (true);
+        }
+
+        private void ReadFile()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void SaveFile()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (Auto auto in carList)
+            {
+                string type = string.Empty;
+                sb.Append(auto.Id).Append(";");
+                sb.Append(auto.IsBorrowed).Append(";");
+                sb.Append(auto.Maker).Append(";");
+                sb.Append(auto.Model).Append(";");
+                
+                if (auto is Car)
+                {
+                    sb.Append(((Car)auto).CarType); ;
+                    type = nameof(Car);
+                }
+                sb.Append(";");
+
+                if (auto is Truck)
+                {
+                    sb.Append(((Truck)auto).Capacity);
+                    type = nameof(Truck);
+                }
+                sb.Append(";");
+
+                if (auto is Bus)
+                {
+                    sb.Append(((Bus)auto).SeatsCount);
+                    type = nameof(Bus);
+                }
+                sb.Append(";");
+                sb.Append(type).AppendLine(";");
+            }
+
+            File.WriteAllText("carSharingDb.csv",sb.ToString());
         }
 
         private void ShareOwnCar()

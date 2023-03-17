@@ -24,6 +24,7 @@ namespace ComarchZadania.CarSharing
         public void TankCar(int count)
         {
             accualGasState += count;
+
         }
     }
 
