@@ -11,7 +11,19 @@
     mc:Ignorable="d">
     <DockPanel>
 
-        <Menu DockPanel.Dock="Top" />
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Plik">
+                <MenuItem Header="Zamknij" />
+            </MenuItem>
+            <MenuItem Header="Edycja">
+                <MenuItem Header="Dodaj" />
+                <Separator />
+                <MenuItem Header="Usuń" />
+            </MenuItem>
+            <MenuItem Header="Pomoc">
+                <MenuItem Header="O programie" />
+            </MenuItem>
+        </Menu>
 
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
