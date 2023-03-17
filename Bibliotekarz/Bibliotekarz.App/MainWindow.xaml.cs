@@ -1,4 +1,6 @@
-﻿using Bibliotekarz.Data.Model;
+﻿using Bibliotekarz.Data.Context;
+using Bibliotekarz.Data.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,8 +28,81 @@ namespace Bibliotekarz.App
         public MainWindow()
         {
             InitializeComponent();
+            InitializeDatabase();
             DataContext = this;
-            GenerateFakeBooks();
+            //GenerateFakeBooks();
+            GetDatabaseData();
+        }
+
+        private void GetDatabaseData()
+        {
+            using ApplicationDbContext dbContext = new ApplicationDbContext();
+
+            var allBooks = dbContext.Books.Include(b => b.Borrower).OrderBy(book => book.Author).ThenBy(book => book.Title).ToList();
+
+            BookList = new ObservableCollection<Book>();
+            foreach (var item in allBooks)
+            {
+                BookList.Add(item);
+            }
+        }
+
+        private void InitializeDatabase()
+        {
+            using (ApplicationDbContext dbContext = new ApplicationDbContext())
+            {
+                dbContext.Database.Migrate();
+
+                if (!dbContext.Books.Any())
+                {
+                    SeedData(dbContext);
+                }
+            }
+        }
+
+        private void SeedData(ApplicationDbContext dbContext)
+        {
+            var localBooks = new List<Book>();
+
+            localBooks.Add(new Book()
+            {
+                Author = "Leszek Lewandowski",
+                Title = "Programowanie w C#",
+                PageCount = 456,
+                ISBN = "",
+                IsBorrowed = false,
+            });
+
+            localBooks.Add(new Book()
+            {
+                Author = "John Sharp",
+                Title = "Zaawansowany ASP.NET",
+                PageCount = 500,
+                ISBN = "",
+                IsBorrowed = true,
+                Borrower = new Customer()
+                {
+                    FirstName = "Jan",
+                    LastName = "Nowak"
+                }
+            });
+
+            localBooks.Add(new Book()
+            {
+                Author = "John Sharp",
+                Title = "Podstawy ASP.NET",
+                PageCount = 500,
+                ISBN = "",
+                IsBorrowed = true,
+                Borrower = new Customer()
+                {
+                    FirstName = "Jan",
+                    LastName = "Nowak"
+                }
+            });
+
+            dbContext.Books.AddRange(localBooks);
+            dbContext.SaveChanges();
         }
 
         public ObservableCollection<Book> BookList { get; set; }
@@ -42,7 +117,7 @@ namespace Bibliotekarz.App
         {
             allBooks = new List<Book>();
 
-            allBooks.Add(new Book() 
+            allBooks.Add(new Book()
             {
                 Id = 1,
                 Author = "Leszek Lewandowski",
@@ -58,10 +133,10 @@ namespace Bibliotekarz.App
                 Title = "Zaawansowany ASP.NET",
                 PageCount = 500,
                 IsBorrowed = true,
-                Borrower = new Customer() 
+                Borrower = new Customer()
                 {
                     Id = 1,
-                    FirstName ="Jan",
+                    FirstName = "Jan",
                     LastName = "Nowak"
                 }
             });
@@ -99,7 +174,7 @@ namespace Bibliotekarz.App
             }
             else
             {
-                var filtedItems = allBooks.Where(book => 
+                var filtedItems = allBooks.Where(book =>
                                             book.Title.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase)
                                         || book.Author.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase)
                                         || (book.Borrower?.FirstName.Contains(FilterText, StringComparison.InvariantCultureIgnoreCase) ?? false)

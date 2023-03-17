@@ -14,10 +14,12 @@ namespace Bibliotekarz.Data.Model
 
         public string Title { get; set; }
 
+        public string? ISBN { get; set; }
+
         public int PageCount { get; set; }
 
         public bool IsBorrowed { get; set; }
 
-        public Customer Borrower { get; set; }
+        public Customer? Borrower { get; set; }
     }
 }
